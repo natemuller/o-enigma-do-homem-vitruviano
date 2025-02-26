@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 public class FrequenciaDosDetalhes {
 
-    public void verificaOcorrencia (int [] arrayElementos, int num) {
+    public void contaOcorrencia (int [] arrayElementos, int num) {
         int frequencia = 0;
         for (int i = 0; i < arrayElementos.length; i++) {
             if (arrayElementos[i] == num) {  
@@ -11,6 +11,18 @@ public class FrequenciaDosDetalhes {
         }
         System.out.println ("O array acima possui " + frequencia + " ocorrencias do numero " + num);
     }
+
+    public boolean verificaOcorrencia (int [] arrayElementos) {
+        for (int i = 0; i < arrayElementos.length; i++) {
+            for (int j = i + 1; j < arrayElementos.length; j++) {
+                if (arrayElementos[i] == arrayElementos[j]) {
+                    return true; 
+                }
+            }
+        }
+        return false;
+    }
+
     public static void main (String[] args) throws Exception {
         System.out.println ("De os elementos do array separados por espaco: ");
         Scanner scanner = new Scanner (System.in);
@@ -25,9 +37,9 @@ public class FrequenciaDosDetalhes {
         System.out.println(Arrays.toString(array));
         System.out.println(" ");
 
-        FrequenciaDosDetalhes frequencia = new FrequenciaDosDetalhes ();
-        frequencia.verificaOcorrencia (array, num);
-        
-        
+        FrequenciaDosDetalhes frequencia = new FrequenciaDosDetalhes();
+        System.out.println("O array possui ocorrencias? " + frequencia.verificaOcorrencia(array));
+
+        frequencia.contaOcorrencia(array, num);
     }
 }
