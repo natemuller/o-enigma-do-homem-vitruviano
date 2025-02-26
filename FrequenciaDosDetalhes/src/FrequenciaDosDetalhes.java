@@ -23,18 +23,44 @@ public class FrequenciaDosDetalhes {
         return false;
     }
 
-    public void contaOcorrenciaIndividual (int [] arrayElementos) {
-        int contagem = 0;
+    public void contaOcorrenciaIndividual(int[] arrayElementos) {
         for (int i = 0; i < arrayElementos.length; i++) {
-            for (int j = i + 1; j < arrayElementos.length; j++) {
+            int contador = 0;
+            for (int j = 0; j < arrayElementos.length; j++) {
                 if (arrayElementos[i] == arrayElementos[j]) {
-                     System.out.println("O numero" + i + "se repete no array");
-                    contagem++;
-                     continue;
+                    contador++;
+                }
+            }
+            System.out.println("O elemento " + arrayElementos[i] + " se repete " + contador + " vezes no array");
+        }
+    }
+
+    public void imprimeOcorrencias(int[] arrayElementos) {
+        int[] ocorrencias = new int[arrayElementos.length];
+        int indice = 0;
+        for (int i = 0; i < arrayElementos.length; i++) {
+            int contador = 0;
+            for (int j = 0; j < arrayElementos.length; j++) {
+                if (arrayElementos[i] == arrayElementos[j]) {
+                    contador++;
+                }
+            }
+            if (contador > 1) { 
+                boolean jaAdicionado = false;
+                for (int k = 0; k < indice; k++) {
+                    if (ocorrencias[k] == arrayElementos[i]) {
+                        jaAdicionado = true;
+                        break;
+                    }
+                }
+                if (!jaAdicionado) {
+                    ocorrencias[indice++] = arrayElementos[i]; 
                 }
             }
         }
-        System.out.println("O array possui " + contagem + " elementos que se repetem");
+        for (int i = 0; i < indice; i++) {
+            System.out.print(ocorrencias[i] + " ");
+        }
     }
 
     public static void main (String[] args) throws Exception {
@@ -57,5 +83,7 @@ public class FrequenciaDosDetalhes {
         frequencia.contaOcorrencia(array, num);
 
         frequencia.contaOcorrenciaIndividual(array);
+
+        frequencia.imprimeOcorrencias(array);
     }
 }
