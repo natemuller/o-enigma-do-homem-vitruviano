@@ -1,5 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
+import java.lang.management.ManagementFactory;
+import java.lang.management.ThreadMXBean;
 public class FrequenciaDosDetalhes {
 
     public void contaOcorrencia (int [] arrayElementos, int num) {
@@ -64,6 +66,11 @@ public class FrequenciaDosDetalhes {
     }
 
     public static void main (String[] args) throws Exception {
+
+        ThreadMXBean threadBean = ManagementFactory.getThreadMXBean();
+        long startTime = System.nanoTime();
+        long startCpuTime = threadBean.getCurrentThreadCpuTime();
+
         System.out.println ("De os elementos do array separados por espaco: ");
         Scanner scanner = new Scanner (System.in);
         String elementos = scanner.nextLine ();
@@ -85,5 +92,16 @@ public class FrequenciaDosDetalhes {
         frequencia.contaOcorrenciaIndividual(array);
 
         frequencia.imprimeOcorrencias(array);
+
+        System.out.println(" ");
+
+        long endTime = System.nanoTime();
+        long endCpuTime = threadBean.getCurrentThreadCpuTime();
+
+        long elapsedTime = endTime - startTime;
+        long elapsedCpuTime = endCpuTime - startCpuTime;
+
+        System.out.println("Tempo total de execução (nanosegundos): " + elapsedTime);
+        System.out.println("Tempo total de CPU (nanosegundos): " + elapsedCpuTime);
     }
 }

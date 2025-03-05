@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.util.Arrays;
+import java.lang.management.ManagementFactory;
+import java.lang.management.ThreadMXBean;
 public class SequenciaAurea {
     public String imprimeString (int a, int b) {
         String sequencia = "";
@@ -39,6 +41,10 @@ public class SequenciaAurea {
     }
 
     public static void main(String[] args) {
+
+        ThreadMXBean threadBean = ManagementFactory.getThreadMXBean();
+        long startTime = System.nanoTime();
+        long startCpuTime = threadBean.getCurrentThreadCpuTime();
         
         Scanner scanner = new Scanner(System.in);
 
@@ -68,6 +74,18 @@ public class SequenciaAurea {
                 System.out.print(numeros[i] + ", ");
             }
         }
+
+        System.out.println(" ");
+
+        long endTime = System.nanoTime();
+        long endCpuTime = threadBean.getCurrentThreadCpuTime();
+
+        long elapsedTime = endTime - startTime;
+        long elapsedCpuTime = endCpuTime - startCpuTime;
+
+        System.out.println("Tempo total de execução (nanosegundos): " + elapsedTime);
+        System.out.println("Tempo total de CPU (nanosegundos): " + elapsedCpuTime);
+    }
 
     }
 }
