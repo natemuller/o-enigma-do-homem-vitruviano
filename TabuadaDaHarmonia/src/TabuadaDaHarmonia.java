@@ -15,6 +15,15 @@ public class TabuadaDaHarmonia {
         System.out.println (" ");
     }
 
+    public static void SomaArray (int[] elementos) {
+        int total = 0;
+        for (int i = 0; i < elementos.length; i++) {
+            total += elementos[i];
+        }
+        System.out.printf("Soma: %d", total);
+        System.out.println(" ");
+    }
+
     public static void main(String[] args) throws Exception {
         int valor = 0;
         int a = 0;
@@ -27,12 +36,23 @@ public class TabuadaDaHarmonia {
 
         CalculaTabuada(valor);
 
-        System.out.printf("De dois inteiros separados por enter:");
+        System.out.printf("De dois inteiros separados por espaco:");
         System.out.println(" ");
         a = scanner.nextInt();     
-        b = scanner.nextInt();     
-        scanner.close(); 
+        b = scanner.nextInt();      
 
         CalculaPotencia(a, b);
+
+        System.out.println("De um array de inteiros separado por espaco:");
+        scanner.nextLine();
+        String input = scanner.nextLine();
+        String[] elementsStr = input.split(" ");
+
+        int[] elementos = new int[elementsStr.length];
+        for (int i = 0; i < elementsStr.length; i++) {
+            elementos[i] = Integer.parseInt(elementsStr[i]);
+        }
+        scanner.close();
+        SomaArray(elementos);
     }
 }
