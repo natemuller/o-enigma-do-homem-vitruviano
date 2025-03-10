@@ -47,4 +47,4 @@ inteiros e some todos os elementos.
 M03.4. Os Primos da Mensagem: A polícia encontrou dois números que podem ser as
 coordenadas de um local importante. Anala acredita que a soma dos números primos
 entre eles revela a localização do esconderijo do grupo secreto. Crie um programa que
-receba dois números e calcule a soma dos primos no interval
+receba dois números e calcule a soma dos primos no intervalo

@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class TabuadaDaHarmonia {
     public static void CalculaTabuada (int valor) {
@@ -22,6 +23,31 @@ public class TabuadaDaHarmonia {
         }
         System.out.printf("Soma: %d", total);
         System.out.println(" ");
+    }
+
+    public static boolean verificaPrimo (int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i < num; i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static int [] retornaArray (int num1, int num2) {
+        int menor = Math.min(num1, num2);
+        int maior = Math.max(num1, num2);
+        int tam = maior - menor + 1;
+        int [] sequencia = new int [tam];
+       
+
+        for (int i = 0; i < tam; i++) {
+            sequencia [i] = menor + i;
+        }
+        return sequencia;
     }
 
     public static void main(String[] args) throws Exception {
@@ -52,7 +78,36 @@ public class TabuadaDaHarmonia {
         for (int i = 0; i < elementsStr.length; i++) {
             elementos[i] = Integer.parseInt(elementsStr[i]);
         }
-        scanner.close();
         SomaArray(elementos);
+    
+        System.out.printf("De um inteiro:\n");
+        int num1 = scanner.nextInt();
+
+        System.out.printf("De outro inteiro:\n");
+        int num2 = scanner.nextInt();
+        
+        int[] arrayTemporario = retornaArray(num1, num2);
+
+        System.out.println("Primos: ");
+        
+        int contador = 0;
+        for (int num : arrayTemporario) {
+            if (verificaPrimo(num)) {
+                contador++;
+            }
+        }
+
+        int[] primosArray = new int[contador];
+        int indice = 0;
+
+        for (int num : arrayTemporario) {
+            if (verificaPrimo(num)) {
+                primosArray[indice++] = num;
+            }
+        }
+
+        System.out.println(Arrays.toString(primosArray));
+
+        scanner.close();
     }
 }
